@@ -1,0 +1,10 @@
+package com.PerClass;
+
+public class Insert_Data_Table_Per_Class {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

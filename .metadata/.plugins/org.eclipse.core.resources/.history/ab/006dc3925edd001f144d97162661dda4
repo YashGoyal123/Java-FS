@@ -1,0 +1,23 @@
+package com.Relation;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+@Table(name = "emp6")
+
+public class Employee {
+	@Id
+	@GenericGenerator(name = "xyz",strategy = "increment")
+	@GenericGenerator(genereator = "xyz")
+	int eid;
+	String name;
+	@OneToOne(targetEntity = Address.class,cascade = CascadeType.ALL)
+	@JoinColumn(name = "aid",unique = true)
+	Address address;
+}

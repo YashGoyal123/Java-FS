@@ -1,0 +1,51 @@
+package com.core;
+
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+public class SelectData_Employee_DAO {
+
+    public static void main(String[] args) {
+        // Load Hibernate configuration
+        Configuration con = new Configuration();
+        con.configure("hibernate.cfg.xml"); // Ensure the file name is correct
+        SessionFactory sf = con.buildSessionFactory();
+
+        Session session = null;
+        Transaction transaction = null;
+
+        try {
+            // Open a session and begin transaction
+            session = sf.openSession();
+            transaction = session.beginTransaction();
+
+            // HQL query to fetch data from Employee entity
+            Query query = session.createQuery("from Employee"); // Ensure "Employee" matches the entity class name
+            List<Employee> employeeList = query.list();
+
+            // Iterate through the result and print each employee
+            for (Employee emp : employeeList) {
+                System.out.println(emp);
+            }
+
+            // Commit the transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            // Close resources
+            if (session != null) {
+                session.close();
+            }
+            sf.close();
+        }
+    }
+}

@@ -1,0 +1,10 @@
+package com.Concreate;
+
+public class Insert_Data_Joined {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
